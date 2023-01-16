@@ -37,10 +37,7 @@ public class CustomerTest {
 
         String actual_statement = customer.htmlStatement();
 
-        String expected_statement = "<H1>Rental Record for </H1><b>Me</b><br>\tMovie_1\t2.0\n" +
-                "\tMovie_2\t12.0\n" +
-                "\tMovie_3\t6.0\n" +
-                "Amount owed is <b>20.0</b><br>You earned <b>4</b> frequent renter points <br>";
+        String expected_statement = "<H1>Rental Record for </H1><b>Me</b><br><b>Movie_1<b>2.0<br><b>Movie_2<b>12.0<br><b>Movie_3<b>6.0<br>Amount owed is <b>20.0</b><br>You earned <b>4</b> frequent renter points <br>";
 
         Assert.assertEquals(expected_statement,actual_statement);
     }
