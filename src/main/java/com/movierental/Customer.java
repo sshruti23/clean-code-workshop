@@ -39,16 +39,16 @@ public class Customer {
         the TextStatement might end up changing Customer itself.
          */
 
-        public String display(Customer customer) {
-            String statement = "Rental Record for " + customer.getName() + "\n";
-            for (Rental rental : customer.rentals) {
+        public String display(String name, List<Rental> rentals, double totalAmount, int totalFrequentRenterPoints) {
+            String statement = "Rental Record for " + name + "\n";
+            for (Rental rental : rentals) {
 
                 statement += "\t" + rental.movie().getTitle() + "\t" +
                         Rental.amount(rental) + "\n";
             }
 
-            statement += "Amount owed is " + customer.totalAmount() + "\n";
-            statement += "You earned " + customer.totalFrequentRenterPoints()
+            statement += "Amount owed is " + totalAmount + "\n";
+            statement += "You earned " + totalFrequentRenterPoints
                     + " frequent renter points";
             return statement;
         }
@@ -56,7 +56,7 @@ public class Customer {
     }
 
     public String statement() {
-        return new TextStatement().display(this);
+        return new TextStatement().display(name, rentals, totalAmount(), totalFrequentRenterPoints());
 
     }
 
