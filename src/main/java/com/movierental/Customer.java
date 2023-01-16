@@ -34,13 +34,13 @@ public class Customer {
 
             //show figures for this rental
             result += "\t" + rental.movie().getTitle() + "\t" +
-                    String.valueOf(thisAmount) + "\n";
+                    thisAmount + "\n";
             totalAmount += thisAmount;
         }
 
         //add footer lines result
-        result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
-        result += "You earned " + String.valueOf(frequentRenterPoints)
+        result += "Amount owed is " + totalAmount + "\n";
+        result += "You earned " + frequentRenterPoints
                 + " frequent renter points";
         return result;
     }
