@@ -24,16 +24,16 @@ public class Customer {
         int frequentRenterPoints = 0;
         String result = "Rental Record for " + getName() + "\n";
         for (Rental rental : rentals) {
-            double thisAmount = amountFor(rental);
+            double thisAmount = Rental.amount(rental);
             // add frequent renter points
             frequentRenterPoints++;
             // add bonus for a two day new release rental
-            if ((rental.getMovie().getPriceCode() == Movie.NEW_RELEASE)
+            if ((rental.movie().getPriceCode() == Movie.NEW_RELEASE)
                     &&
                     rental.getDaysRented() > 1) frequentRenterPoints++;
 
             //show figures for this rental
-            result += "\t" + rental.getMovie().getTitle() + "\t" +
+            result += "\t" + rental.movie().getTitle() + "\t" +
                     String.valueOf(thisAmount) + "\n";
             totalAmount += thisAmount;
         }
@@ -45,29 +45,5 @@ public class Customer {
         return result;
     }
 
-    private static double amountFor(Rental rental) {
-        // Step 1 : Extract the independent Switch Statement
-        // Smell Name : Long Method code smell
-        // Definition : A method does multiple things
-        // Resolve Action : extract method
-        double thisAmount = 0;
-        //determine amounts for each line
-        switch (rental.getMovie().getPriceCode()) {
-            case Movie.REGULAR:
-                thisAmount += 2;
-                if (rental.getDaysRented() > 2)
-                    thisAmount += (rental.getDaysRented() - 2) * 1.5;
-                break;
-            case Movie.NEW_RELEASE:
-                thisAmount += rental.getDaysRented() * 3;
-                break;
-            case Movie.CHILDRENS:
-                thisAmount += 1.5;
-                if (rental.getDaysRented() > 3)
-                    thisAmount += (rental.getDaysRented() - 3) * 1.5;
-                break;
-        }
-        return thisAmount;
-    }
 }
 
