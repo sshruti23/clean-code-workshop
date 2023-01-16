@@ -20,19 +20,18 @@ public class Customer {
     }
 
     public String statement() {
-        String result = "Rental Record for " + getName() + "\n";
+        String statement = "Rental Record for " + getName() + "\n";
         for (Rental rental : rentals) {
 
-            //show figures for this rental
-            result += "\t" + rental.movie().getTitle() + "\t" +
+            statement += "\t" + rental.movie().getTitle() + "\t" +
                     Rental.amount(rental) + "\n";
         }
 
         //add footer lines result
-        result += "Amount owed is " + totalAmount() + "\n";
-        result += "You earned " + totalFrequentRenterPoints()
+        statement += "Amount owed is " + totalAmount() + "\n";
+        statement += "You earned " + totalFrequentRenterPoints()
                 + " frequent renter points";
-        return result;
+        return statement;
     }
 
     private int totalFrequentRenterPoints() {
@@ -51,5 +50,17 @@ public class Customer {
         return totalAmount;
     }
 
+    public String htmlStatement() {
+        String htmlStatement = "<H1>Rental Record for </H1>" + "<b>" + getName() + "</b>" + "<br>";
+        for (Rental rental : rentals) {
+            htmlStatement += "<b>" + rental.movie().getTitle() + "<b>" +
+                    Rental.amount(rental) + "<br>";
+        }
+
+        htmlStatement += "Amount owed is " + "<b>" + totalAmount() + "</b>" + "<br>";
+        htmlStatement += "You earned " + "<b>" + totalFrequentRenterPoints() + "</b>"
+                + " frequent renter points <br>";
+        return htmlStatement;
+    }
 }
 
