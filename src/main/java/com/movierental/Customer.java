@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
+
+    /*
+     The urge to introduce Statement as a Parent class and Text & html Statement as child class is called :Speculative Generality.
+     */
+
     private String name;
     private List<Rental> rentals = new ArrayList<>();
 
