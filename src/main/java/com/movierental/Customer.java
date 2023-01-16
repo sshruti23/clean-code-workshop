@@ -25,6 +25,20 @@ public class Customer {
     }
 
     public class TextStatement {
+        /*
+        We have extracted a separate class for the Text Statement. We pass the Customer object to the TextStatement.
+
+        This causes two problems for us -
+        1. The totalAmount and totalFrequentRenterPoints methods now need to be public, breaking encapsulation
+        2. The TextStatement and Customer class are dependent on each other. Thus their association is Bidirectional.
+         This is a Circular Dependency.
+
+        This code smell is called Inappropriate Intimacy. It makes the code difficult to change,
+        because changing any one of these classes might require a change in the other.
+        Moreover, it makes it difficult to modularise code. It can also cause side effects - when the Customer calls TextStatement,
+        the TextStatement might end up changing Customer itself.
+         */
+
         public String display(Customer customer) {
             String statement = "Rental Record for " + customer.getName() + "\n";
             for (Rental rental : customer.rentals) {
