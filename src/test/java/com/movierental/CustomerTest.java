@@ -17,8 +17,6 @@ public class CustomerTest {
     @Test
     public void statement(){
 
-
-
         String actual_statement = customer.statement();
 
         String expected_statement = "Rental Record for Me\n" +
